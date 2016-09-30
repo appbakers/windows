@@ -88,6 +88,10 @@ else
 endif
 # Packer does not allow empty variables, so only pass variables that are defined
 PACKER_VARS := -var 'cm=$(CM)' -var 'version=$(BOX_VERSION)' -var 'update=$(UPDATE)' -var 'headless=$(HEADLESS)' -var "shutdown_command=$(SHUTDOWN_COMMAND)"
+BOX_DISK_SIZE?=
+ifdef BOX_DISK_SIZE
+	PACKER_VARS += -var 'disk_size=$(BOX_DISK_SIZE)'
+endif
 ifdef CM_VERSION
 	PACKER_VARS += -var 'cm_version=$(CM_VERSION)'
 endif
