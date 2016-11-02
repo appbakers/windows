@@ -129,6 +129,18 @@
     }
   ],
   "provisioners": [
+	  {
+		  "execute_command": "{{.Vars}} powershell.exe -File C:/Windows/Temp/script.ps1",
+		  "remote_path": "/tmp/script.ps1",
+		  "scripts": ["script/jdk_inst.ps1"],
+		  "type": "powershell"
+	  },
+	  {
+		  "execute_command": "{{.Vars}} powershell.exe -File C:/Windows/Temp/script.ps1",
+		  "remote_path": "/tmp/script.ps1",
+		  "scripts": ["script/install_chrome_firefox.ps1"],
+		  "type": "powershell"
+	  },
     {
       "environment_vars": [
         "CM={{user `cm`}}",
@@ -150,7 +162,8 @@
     },
     {
       "inline": [
-        "rm -f /tmp/script.bat"
+        "rm -f /tmp/script.bat",
+        "rm -f /tmp/script.ps1"
       ],
       "type": "shell"
     }
